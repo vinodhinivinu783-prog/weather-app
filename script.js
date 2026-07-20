@@ -1,7 +1,12 @@
 async function getWeather() {
   const city = document.getElementById("city").value;
 
-  const apiKey = "bfeb67120eb96afd39e8e5c0cb5ab4f5"; // Replace this
+  if(city === "") {
+    document.getElementById("weatherResult").innerHTML = "Please enter a city 🏙️";
+    return;
+  }
+
+  const apiKey = "bfeb67120eb96afd39e8e5c0cb5ab4f5";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   try {
@@ -24,6 +29,6 @@ async function getWeather() {
     `;
 
   } catch (error) {
-    document.getElementById("weatherResult").innerHTML = "Error fetching data ❌";
+    document.getElementById("weatherResult").innerHTML = "Error fetching data ❌ - Key may not be active yet";
   }
 }
